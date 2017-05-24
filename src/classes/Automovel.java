@@ -21,5 +21,8 @@ public class Automovel extends Veiculo {
 	public Integer kmGrama() {
 		return 30;
 	}
-
+	
+	public String descricao() {
+		return "Automóvel";
+	}
 }

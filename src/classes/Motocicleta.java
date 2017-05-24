@@ -24,4 +24,7 @@ public class Motocicleta extends Veiculo {
 		return 50;
 	}
 
+	public String descricao() {
+		return "Motocicleta";
+	}	
 }

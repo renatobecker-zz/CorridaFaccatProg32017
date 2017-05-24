@@ -23,5 +23,8 @@ public class Trator extends Veiculo {
 	public Integer kmGrama() {
 		return 55;
 	}
-
+	
+	public String descricao() {
+		return "Trator";
+	}	
 }

@@ -23,5 +23,8 @@ public class Bicicleta extends Veiculo {
 	public Integer kmGrama() {
 		return 50;
 	}
-
+	
+	public String descricao() {
+		return "Bicicleta";
+	}	
 }

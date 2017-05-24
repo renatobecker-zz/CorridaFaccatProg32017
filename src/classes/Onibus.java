@@ -23,4 +23,7 @@ public class Onibus extends Veiculo {
 		return 60;
 	}
 
+	public String descricao() {
+		return "Ônibus";
+	}	
 }

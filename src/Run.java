@@ -15,7 +15,7 @@ public class Run {
 	static ArrayList<Extensao> randomExtensoes = new ArrayList<Extensao>();
 	static ArrayList<Veiculo> ObjVeiculos = new ArrayList<Veiculo>();
 	private static Integer extensaoTotal = 0;
-	private double mtsSegundo = 0.28;
+	private static Integer percursoMaximo = 10000; //10km	
 	
 	public static void main(String[] args) {
 		start();
@@ -38,17 +38,36 @@ public class Run {
 	}
 	
 	static void setVeiculo(String value, Integer index) {
-		apostas[index] = value;	
+		String strVeiculo = "";
+		
+	    switch (value) {
+		case "M":
+			strVeiculo = "Motocicleta";
+			break;
+		case "A":	
+			strVeiculo = "Automóvel";			
+			break;
+		case "O":	
+			strVeiculo = "Ônibus";			
+			break;
+		case "T":	
+			strVeiculo = "Trator";			
+			break;
+		case "B":
+			strVeiculo = "Bicicleta";			
+			break;
+    }	    	
+		
+		apostas[index] = strVeiculo;	
 	}
 	
-	static void gerarDistancia() {		
-		while (extensaoTotal < 10000) {
+	static void gerarDistancia() {
+		while (extensaoTotal < percursoMaximo) {
 			String name = terrenos[(int) (Math.random() * terrenos.length)];
 			Integer distancia = randomInt(100, 500);
 			Extensao objExtensao = new Extensao(name, distancia);
 			randomExtensoes.add(objExtensao);
 			extensaoTotal += distancia;
-			System.out.println("Terreno sorteado = " + name + " distancia = " + distancia);
 		}
 	}
 	
@@ -95,15 +114,11 @@ public class Run {
 	static String leftPad(String str, int num) {
 		return String.format("%1$" + num + "s", str);  		
 	}
-	
-	static String printTrace(int num) {
-		return null;
-		
+
+	static String rightPad(String str, int num) {
+	    return String.format("%1$-" + num + "s", str);
 	}
 	
-	//void printProgress(Integer mts, ) {
-		
-	//}
 	static void correr() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		Class<?> classDefinition;
 		for (int c = 0; c < veiculos.length; c++) {
@@ -135,24 +150,15 @@ public class Run {
 	    			break;
 		    }	    	
 		}
+		        
+		for (Veiculo objVeiculo : ObjVeiculos) {
+			objVeiculo.setTerrenosPercurso(randomExtensoes);
+			objVeiculo.setApostas(apostas);
+			objVeiculo.run();			
+		}
 		
-		for (Extensao ext : randomExtensoes) {
-			for (int i = 0; i < veiculos.length; i++) {
-				
-				//String line = 
-				//System.out.println(line);
-				
-				
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}    
 	}
-	
+			
 	static boolean veiculoValido(String value) {
 		return Arrays.asList(veiculos).contains(value);
 	}	    
